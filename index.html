@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NPS Power Systems LLC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --steel: #81a6c6;
+      --sky: #aacfdc;
+      --cream: #f3e3d0;
+      --sand: #d2c4b4;
+      --dark: #0f1923;
+      --darker: #080e14;
+      --white: #ffffff;
+      --teal: #1ab5bf;
+      --teal-dark: #139da6;
+      --teal-glow: rgba(26,181,191,.25);
+      --body: #3d4f60;
+      --muted: #6e8394;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--body);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      height: 72px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(26,181,191,.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+    }
+    .nav-logo img { height: 54px; object-fit: contain; display: block; }
+    .nav-logo .nav-brand-fallback {
+      display: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--white);
+      line-height: 1.2;
+    }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-phone {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 1.15rem;
+      letter-spacing: .5px;
+      color: black;
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-phone:hover { color: var(--teal); }
+    .nav-cta {
+      background: black;
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: .9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 9px 22px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .nav-cta:hover { background: var(--teal-dark); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('hero-bg.jpg'), url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.04);
+      transition: transform 8s ease;
+      filter: brightness(.38) saturate(.7);
+    }
+    .hero:hover .hero-bg { transform: scale(1.0); }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 0%, rgba(26,181,191,.22) 0%, transparent 65%),
+        linear-gradient(to bottom, rgba(8,14,20,.1) 0%, rgba(8,14,20,.55) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 24px;
+      max-width: 780px;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(26,181,191,.15);
+      border: 1px solid rgba(26,181,191,.35);
+      border-radius: 100px;
+      padding: 6px 18px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 24px;
+    }
+    .hero-dot { width: 7px; height: 7px; background: var(--teal); border-radius: 50%; animation: pulse 1.6s ease infinite; }
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.8rem, 6vw, 4.8rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.05;
+      letter-spacing: -1px;
+      margin-bottom: 22px;
+      text-shadow: 0 4px 40px rgba(0,0,0,.4);
+    }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,.75);
+      max-width: 520px;
+      margin: 0 auto 40px;
+      line-height: 1.75;
+    }
+    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--teal);
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      padding: 14px 34px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background .2s, transform .15s, box-shadow .2s;
+    }
+    .btn-primary:hover {
+      background: var(--teal-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(26,181,191,.4);
+    }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      padding: 14px 34px;
+      border-radius: 6px;
+      border: 2px solid rgba(255,255,255,.3);
+      text-decoration: none;
+      transition: border-color .2s, background .2s, transform .15s;
+    }
+    .btn-ghost:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,.08);
+      transform: translateY(-2px);
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-scroll span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 42px;
+      background: linear-gradient(to bottom, rgba(255,255,255,.5), transparent);
+      animation: scrollDown 1.8s ease infinite;
+    }
+    @keyframes scrollDown {
+      0%   { transform: scaleY(0); transform-origin: top; opacity: 0; }
+      50%  { transform: scaleY(1); opacity: 1; }
+      100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+    }
+
+    /* ── MULTI-PANEL BRAND SLIDESHOW ── */
+    .slideshow-section {
+      background: var(--darker);
+      padding: 70px 0;
+    }
+    .slideshow-header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 0 24px;
+    }
+    .slideshow-header h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .slideshow-header span {
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: var(--teal);
+      margin: 10px auto 0;
+      border-radius: 2px;
+    }
+
+    .panel-slideshow-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel-track {
+      display: flex;
+      transition: transform .65s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .panel-group {
+      flex: 0 0 100%;
+      display: flex;
+      height: 280px;
+    }
+
+    .panel-slide {
+      flex: 1 1 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel-slide--wide {
+      flex: 1.7 1 0;
+    }
+
+    .panel-slide + .panel-slide {
+      border-left: 2px solid var(--darker);
+    }
+
+    .panel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(.5) saturate(.7);
+      transition: filter .4s ease, transform .45s ease;
+    }
+
+    .panel-slide:hover img {
+      filter: brightness(.72) saturate(.9);
+      transform: scale(1.05);
+    }
+
+    .panel-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 48px 16px 14px;
+      background: linear-gradient(transparent, rgba(0,0,0,.75));
+      pointer-events: none;
+    }
+
+    .panel-caption strong {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: .3px;
+      line-height: 1.2;
+      text-shadow: 0 1px 8px rgba(0,0,0,.6);
+    }
+
+    .panel-caption em {
+      font-style: normal;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .72rem;
+      color: rgba(170,207,220,.9);
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* Arrows */
+    .panel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 46px;
+      height: 46px;
+      background: rgba(26,181,191,.85);
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+    .panel-btn:hover { background: var(--teal-dark); transform: translateY(-50%) scale(1.08); }
+    .panel-btn svg { width: 18px; height: 18px; fill: var(--white); }
+    .panel-prev { left: 20px; }
+    .panel-next { right: 20px; }
+
+    /* Dots */
+    .slide-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.25);
+      border: none;
+      cursor: pointer;
+      transition: background .25s, transform .2s;
+    }
+    .dot.active { background: var(--teal); transform: scale(1.3); }
+
+    /* ── SERVICES ── */
+    .services { padding: 100px 40px; background: #f8fbfd; }
+    .services-inner { max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1.1;
+      margin-bottom: 56px;
+    }
+    .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .service-card {
+      background: var(--white);
+      border: 1.5px solid #e2ecf4;
+      border-radius: 14px;
+      padding: 40px 34px;
+      transition: border-color .25s, box-shadow .3s, transform .25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--sky));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s ease;
+    }
+    .service-card:hover { border-color: var(--sky); box-shadow: 0 16px 48px rgba(26,181,191,.12); transform: translateY(-5px); }
+    .service-card:hover::after { transform: scaleX(1); }
+    .service-icon {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, var(--teal), var(--sky));
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 20px rgba(26,181,191,.3);
+    }
+    .service-icon svg { width: 24px; height: 24px; fill: var(--white); }
+    .service-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 10px;
+      letter-spacing: .3px;
+    }
+    .service-card p { font-size: .9rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── ABOUT ── */
+    .about { background: var(--white); padding: 100px 40px; }
+    .about-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .about-text p { font-size: .95rem; color: var(--body); line-height: 1.85; margin-bottom: 18px; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-slideshow {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,.14);
+      aspect-ratio: 4/3;
+    }
+    .about-track {
+      display: flex;
+      height: 100%;
+      transition: transform .55s cubic-bezier(.4,0,.2,1);
+    }
+    .about-slide { flex: 0 0 100%; height: 100%; }
+    .about-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .about-slide-btn {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      z-index: 5;
+      width: 38px; height: 38px;
+      background: rgba(0,0,0,.45);
+      border: none;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .about-slide-btn:hover { background: var(--teal); }
+    .about-slide-btn svg { width: 16px; height: 16px; fill: var(--white); }
+    .about-prev { left: 12px; }
+    .about-next { right: 12px; }
+    .about-dots {
+      position: absolute;
+      bottom: 14px;
+      left: 50%; transform: translateX(-50%);
+      display: flex; gap: 6px;
+    }
+    .about-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.4);
+      border: none; cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+    .about-dot.active { background: var(--white); transform: scale(1.4); }
+
+    /* ── WHY ── */
+    .why { background: var(--dark); padding: 100px 40px; position: relative; overflow: hidden; }
+    .why::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(26,181,191,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .why-inner { max-width: 1000px; margin: 0 auto; }
+    .why .section-title { color: var(--white); }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .why-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 14px;
+      padding: 36px 28px;
+      transition: background .25s, border-color .25s, transform .25s;
+    }
+    .why-card:hover { background: rgba(26,181,191,.08); border-color: rgba(26,181,191,.3); transform: translateY(-6px); }
+    .why-num { font-family: 'Barlow Condensed', sans-serif; font-size: 3rem; font-weight: 800; color: var(--teal); line-height: 1; margin-bottom: 14px; }
+    .why-card h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+    .why-card p { font-size: .88rem; color: rgba(255,255,255,.55); line-height: 1.65; }
+
+    /* ── CONTACT ── */
+    .contact { background: #f8fbfd; padding: 100px 40px; }
+    .contact-inner {
+      max-width: 1060px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1.1fr;
+      gap: 60px; align-items: start;
+    }
+    .contact-left h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--dark); line-height: 1.1; margin-bottom: 8px; }
+    .contact-sub { font-size: .9rem; color: var(--muted); margin-bottom: 36px; }
+    .contact-cards { display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px; }
+    .contact-card {
+      background: var(--white);
+      border: 1.5px solid #e2ecf4;
+      border-radius: 12px;
+      padding: 18px 20px;
+      display: flex; align-items: center; gap: 16px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .contact-card:hover { border-color: var(--sky); box-shadow: 0 6px 24px rgba(26,181,191,.1); }
+    .contact-icon {
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, var(--teal), var(--sky));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-icon svg { width: 18px; height: 18px; fill: var(--white); }
+    .contact-info-text strong { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+    .contact-info-text span, .contact-info-text a { font-size: .92rem; color: var(--body); text-decoration: none; }
+    .contact-info-text a:hover { color: var(--teal); }
+    .hours-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #eaf7f8;
+      border: 1px solid rgba(26,181,191,.25);
+      border-radius: 6px; padding: 7px 14px;
+      font-size: .82rem; color: var(--body); font-weight: 500;
+    }
+    .hours-dot { width: 8px; height: 8px; background: #4caf50; border-radius: 50%; flex-shrink: 0; animation: pulse 1.6s ease infinite; }
+    .social-row { display: flex; gap: 10px; margin-top: 28px; }
+    .social-btn {
+      width: 40px; height: 40px;
+      background: var(--steel);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .social-btn:hover { background: var(--teal); transform: translateY(-2px); }
+    .social-btn svg { width: 17px; height: 17px; fill: var(--white); }
+    .contact-right { display: flex; flex-direction: column; gap: 0; }
+    .map-wrap {
+      border-radius: 14px; overflow: hidden;
+      box-shadow: 0 16px 48px rgba(0,0,0,.1);
+      border: 1.5px solid #e2ecf4;
+      line-height: 0;
+    }
+    .map-wrap iframe { width: 100%; height: 400px; display: block; border: 0; }
+    .map-footer {
+      background: var(--white);
+      border: 1.5px solid #e2ecf4; border-top: none;
+      border-radius: 0 0 14px 14px;
+      padding: 14px 18px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .map-footer svg { width: 16px; height: 16px; fill: var(--teal); flex-shrink: 0; }
+    .map-footer span { font-size: .84rem; color: var(--muted); }
+
+    /* ── FAQ ── */
+    .faq { background: var(--white); padding: 100px 40px; text-align: center; }
+    .faq-grid { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; text-align: left; }
+    .faq-item {
+      padding: 28px;
+      border: 1.5px solid #e2ecf4;
+      border-radius: 14px;
+      transition: border-color .25s, box-shadow .25s, transform .2s;
+    }
+    .faq-item:hover { border-color: var(--sky); box-shadow: 0 10px 32px rgba(26,181,191,.1); transform: translateY(-3px); }
+    .faq-q { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+    .faq-q-icon {
+      width: 22px; height: 22px;
+      background: var(--teal);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .faq-q-icon svg { width: 10px; height: 10px; fill: var(--white); }
+    .faq-item h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; color: var(--dark); }
+    .faq-item p { font-size: .87rem; color: var(--muted); line-height: 1.68; padding-left: 34px; }
+
+    /* ── CTA BANNER ── */
+    .cta-banner { background: var(--dark); padding: 90px 40px; text-align: center; position: relative; overflow: hidden; }
+    .cta-banner::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(26,181,191,.14) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-banner h2 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; color: var(--white); margin-bottom: 14px; }
+    .cta-banner p { font-size: .95rem; color: rgba(255,255,255,.65); max-width: 520px; margin: 0 auto 36px; line-height: 1.75; }
+    .btn-outline {
+      display: inline-block;
+      background: transparent;
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1rem;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 14px 36px; border-radius: 6px;
+      border: 2px solid rgba(255,255,255,.4);
+      text-decoration: none;
+      transition: background .2s, border-color .2s, color .2s, transform .15s;
+    }
+    .btn-outline:hover { background: var(--white); border-color: var(--white); color: var(--dark); transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--darker); padding: 22px 40px; text-align: center; }
+    footer p { font-family: 'Barlow Condensed', sans-serif; font-size: .72rem; color: #3a5060; letter-spacing: 2px; text-transform: uppercase; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .35; }
+    }
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-cta { display: none; }
+      .hero { min-height: 80vh; }
+      .panel-group { height: 200px; }
+      .panel-slide:nth-child(n+4) { display: none; }
+      .panel-slide--wide { flex: 1.4 1 0; }
+      .services { padding: 70px 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .about { padding: 70px 24px; }
+      .about-inner { grid-template-columns: 1fr; gap: 40px; }
+      .why { padding: 70px 24px; }
+      .why-grid { grid-template-columns: 1fr; }
+      .contact { padding: 70px 24px; }
+      .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+      .faq { padding: 70px 24px; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .cta-banner { padding: 70px 24px; }
+    }
+    @media (max-width: 480px) {
+      .panel-group { height: 170px; }
+      .panel-slide:nth-child(n+3) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-logo">
+      <img
+        src="logo.webp"
+        alt="NPS Power Systems LLC"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+      />
+      <span class="nav-brand-fallback">NPS Power Systems LLC</span>
+    </div>
+    <div class="nav-right">
+      <a href="tel:7323122282" class="nav-phone">732-312-2282</a>
+      <a href="tel:7323122282" class="nav-cta">Get Service</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="hero-dot"></span>
+        24/7 Emergency Service Available
+      </div>
+      <h1>Your Reliable<br><em>Standby Generator</em><br>Experts</h1>
+      <p>Expert standby generator service and repairs for residential and commercial generators. Brands serviced include Generac, Kohler, Cummins, and more.</p>
+      <div class="hero-btns">
+        <a href="tel:7323122282" class="btn-primary">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          Call Now
+        </a>
+        <a href="#contact" class="btn-ghost">Our Services</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- BRAND SLIDESHOW — multi-panel grid -->
+  <div class="slideshow-section">
+    <div class="slideshow-header fade-up">
+      <h2>Brands We Service</h2>
+      <span></span>
+    </div>
+
+    <div class="panel-slideshow-wrapper">
+      <div class="panel-track" id="panelTrack">
+
+        <!-- GROUP 1 -->
+        <div class="panel-group">
+          <div class="panel-slide">
+            <img src="cummins.webp" alt="Cummins"
+              onerror="this.src='generac'" />
+            <div class="panel-caption">
+              <strong>Cummins</strong>
+              <em>Liquid Cooled</em>
+            </div>
+          </div>
+          <div class="panel-slide">
+            <img src="kohler.webp" alt="Kohler"
+              onerror="this.src='generac'" />
+            <div class="panel-caption">
+              <strong>Kohler</strong>
+              <em>Air Cooled</em>
+            </div>
+          </div>
+          <div class="panel-slide panel-slide--wide">
+            <img src="generac.webp" alt="Generac Diesel"
+              onerror="this.src='generac'" />
+            <div class="panel-caption">
+              <strong>Generac</strong>
+              <em>Diesel Liquid Cooled</em>
+            </div>
+          </div>
+          <div class="panel-slide">
+            <img src="generac1.webp" alt="Generac Air Cooled"
+              onerror="this.src='generac'" />
+            <div class="panel-caption">
+              <strong>Generac</strong>
+              <em>Air Cooled</em>
+            </div>
+          </div>
+          <div class="panel-slide">
+            <img src="generacATS.webp" alt="Generac ATS"
+              onerror="this.src='generac'" />
+            <div class="panel-caption">
+              <strong>Generac ATS</strong>
+              <em>Transfer Switch</em>
+            </div>
+          </div>
+        </div>
+
+        <!-- GROUP 2 -->
+        <div class="panel-group">
+          <div class="panel-slide">
+            <img src="generac2.webp" alt="Generac ATS"
+              onerror="this.src='generac'" />
+            <div class="panel-caption">
+              <strong>Generac ATS</strong>
+              <em>Transfer Switch</em>
+            </div>
+          </div>
+          <div class="panel-slide panel-slide--wide">
+            <img src="cummins.webp" alt="Cummins"
+              onerror="this.src='generac'" />
+            <div class="panel-caption">
+              <strong>Cummins</strong>
+              <em>Diesel Liquid Cooled</em>
+            </div>
+          </div>
+          <div class="panel-slide">
+            <img src="kohler.webp" alt="Kohler"
+              onerror="this.src='generac'" />
+            <div class="panel-caption">
+              <strong>Kohler</strong>
+              <em>Air Cooled</em>
+            </div>
+          </div>
+          <div class="panel-slide">
+            <img src="generac1.webp" alt="Generac Air"
+              onerror="this.src='generac'" />
+            <div class="panel-caption">
+              <strong>Generac</strong>
+              <em>Air Cooled</em>
+            </div>
+          </div>
+          <div class="panel-slide">
+            <img src="generac1.webp" alt="Generac Diesel"
+              onerror="this.src='generac'" />
+            <div class="panel-caption">
+              <strong>Generac</strong>
+              <em>Liquid Cooled</em>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="panel-btn panel-prev" id="panelPrev" aria-label="Previous">
+        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+      <button class="panel-btn panel-next" id="panelNext" aria-label="Next">
+        <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+
+    <div class="slide-dots" id="panelDots"></div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services">
+    <div class="services-inner">
+      <p class="section-label fade-up">What We Do</p>
+      <h2 class="section-title fade-up">Comprehensive Generator Services</h2>
+      <div class="services-grid">
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 6v6h4.5l-1.5 6H9l-1.5-6H12V6H7.5L6 2h12l-1.5 4H12z"/></svg>
+          </div>
+          <h3>Routine Maintenance</h3>
+          <p>Comprehensive service contracts for optimal generator performance. We keep your system ready when you need it most with scheduled inspections and proactive care.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <h3>Emergency Repair Services</h3>
+          <p>24/7 troubleshooting and repair services when you need it most. Our skilled technicians respond fast to diagnose and fix any generator issue, day or night.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+          </div>
+          <h3>Transfer Switch Service</h3>
+          <p>Expert servicing of automatic and manual transfer switches to ensure seamless power switching between utility and generator power during outages.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3>Service Contracts</h3>
+          <p>Flexible maintenance contracts tailored for residential and commercial clients. Enjoy priority scheduling and peace of mind knowing your generator is always ready.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="about-inner">
+      <div class="about-text fade-up">
+        <p class="section-label">About Us</p>
+        <h2 class="section-title">Expert Standby Generator Service Provider</h2>
+        <p>At NPS POWER SYSTEMS, LLC., we pride ourselves on being the go-to standby generator service and repair company in St. Petersburg, FL. With a relentless commitment to reliability, we deliver top-notch maintenance and troubleshooting services for residential air cooled and commercial liquid cooled generators along with their transfer switches.</p>
+        <p>Specializing in brands like Generac, Kohler, Cummins, and more, we ensure your generator operates seamlessly. Offering service contracts and 24-hour emergency support, we are always prepared to keep your power running when you need it most.</p>
+        <a href="tel:7323122282" class="btn-primary" style="margin-top:28px">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          Schedule Service
+        </a>
+      </div>
+      <div class="about-slideshow fade-up" id="aboutSlideshow">
+        <div class="about-track" id="aboutTrack">
+          <div class="about-slide">
+            <img src="service1.webp" alt="Generator Service"
+              onerror="this.src='service1.webp'" />
+          </div>
+          <div class="about-slide">
+            <img src="service2.webp" alt="Generator Installation"
+              onerror="this.src='s  ervice2.webp'" />
+          </div>
+        </div>
+        <button class="about-slide-btn about-prev" id="aboutPrev">
+          <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </button>
+        <button class="about-slide-btn about-next" id="aboutNext">
+          <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </button>
+        <div class="about-dots" id="aboutDots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE -->
+  <section class="why">
+    <div class="why-inner">
+      <p class="section-label fade-up" style="color:var(--teal)">Why NPS</p>
+      <h2 class="section-title fade-up">Why Choose NPS Power Systems?</h2>
+      <div class="why-grid">
+        <div class="why-card fade-up">
+          <div class="why-num">01.</div>
+          <h3>Expert Troubleshooting</h3>
+          <p>Our skilled technicians diagnose and fix issues promptly, minimizing downtime for your home or business.</p>
+        </div>
+        <div class="why-card fade-up">
+          <div class="why-num">02.</div>
+          <h3>Comprehensive Service Contracts</h3>
+          <p>Flexible contracts for residential and commercial generators tailored to your specific maintenance needs.</p>
+        </div>
+        <div class="why-card fade-up">
+          <div class="why-num">03.</div>
+          <h3>24/7 Emergency Services</h3>
+          <p>Round-the-clock support for your generator emergencies — we're there when the power goes out.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <div class="contact-left fade-up">
+        <p class="section-label">Get In Touch</p>
+        <h2>Contact Us</h2>
+        <p class="contact-sub">Reach out for reliable standby generator services.</p>
+        <div class="contact-cards">
+          <div class="contact-card">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+            <div class="contact-info-text">
+              <strong>Address</strong>
+              <span>5254 39TH ST SOUTH, ST. PETERSBURG FL 33711</span>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            </div>
+            <div class="contact-info-text">
+              <strong>Phone</strong>
+              <a href="tel:7323122282">732-312-2282</a>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </div>
+            <div class="contact-info-text">
+              <strong>Email</strong>
+              <a href="mailto:gurkiss@yahoo.com">gurkiss@yahoo.com</a>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+            </div>
+            <div class="contact-info-text">
+              <strong>Business Hours</strong>
+              <span>
+                <div class="hours-badge" style="margin-top:4px"><span class="hours-dot"></span>Mon–Fri 8AM–4:30PM &nbsp;|&nbsp; Sat–Sun by Appt.</div>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="social-row">
+          <a href="#" class="social-btn" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" fill="var(--teal)"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="X / Twitter">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="contact-right fade-up">
+        <p class="section-label" style="margin-bottom:14px">Our Location</p>
+        <div class="map-wrap">
+          <iframe
+            title="NPS Power Systems LLC Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3526.8!2d-82.7136!3d27.7258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c2e16b3a3a3a3b%3A0x0!2s5254+39th+St+S%2C+St.+Petersburg%2C+FL+33711!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+        <div class="map-footer">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <span>5254 39TH ST SOUTH, ST. PETERSBURG, FL 33711</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="section-header fade-up" style="margin-bottom:50px">
+      <p class="section-label" style="text-align:center;margin-bottom:8px">FAQ</p>
+      <h2 class="section-title" style="text-align:center;margin-bottom:8px">Frequently Asked Questions</h2>
+      <p style="color:var(--muted);font-size:.9rem">Get clarity on our standby generator services and repairs.</p>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item fade-up">
+        <div class="faq-q">
+          <div class="faq-q-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/></svg></div>
+          <h4>What generator brands do you service?</h4>
+        </div>
+        <p>We service major brands including Generac, Kohler, Cummins, and many others, ensuring expert maintenance and repairs for all leading manufacturers.</p>
+      </div>
+      <div class="faq-item fade-up">
+        <div class="faq-q">
+          <div class="faq-q-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/></svg></div>
+          <h4>Do you offer emergency services?</h4>
+        </div>
+        <p>Yes, we provide 24-hour emergency services and after-hours support to address your generator needs at any time, day or night.</p>
+      </div>
+      <div class="faq-item fade-up">
+        <div class="faq-q">
+          <div class="faq-q-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/></svg></div>
+          <h4>What types of generators can you repair?</h4>
+        </div>
+        <p>We service both residential air-cooled and commercial liquid-cooled generators, as well as transfer switch service and maintenance.</p>
+      </div>
+      <div class="faq-item fade-up">
+        <div class="faq-q">
+          <div class="faq-q-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/></svg></div>
+          <h4>How can I schedule a service?</h4>
+        </div>
+        <p>Call us at 732-312-2282 or email gurkiss@yahoo.com. We'll get back to you promptly to confirm your appointment.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <h2>Get Your Generator Up and Running</h2>
+    <p>Contact us today to schedule a service or repair. Whether residential or commercial, our technicians ensure your generator operates smoothly and reliably.</p>
+    <a href="tel:7323122282" class="btn-outline">Get Emergency Service</a>
+  </section>
+
+  <footer>
+    <p>© 2026 NPSPOWERSYSTEMS.COM — All Rights Reserved</p>
+  </footer>
+
+  <script>
+    /* ── MULTI-PANEL BRAND SLIDESHOW ── */
+    (function () {
+      var track = document.getElementById('panelTrack');
+      var groups = track.querySelectorAll('.panel-group');
+      var dotsContainer = document.getElementById('panelDots');
+      var total = groups.length;
+      var current = 0;
+      var timer;
+
+      for (var i = 0; i < total; i++) {
+        var d = document.createElement('button');
+        d.className = 'dot' + (i === 0 ? ' active' : '');
+        d.dataset.index = i;
+        dotsContainer.appendChild(d);
+      }
+
+      function go(n) {
+        current = (n + total) % total;
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dotsContainer.querySelectorAll('.dot').forEach(function (d, i) {
+          d.classList.toggle('active', i === current);
+        });
+        resetTimer();
+      }
+
+      function resetTimer() {
+        clearInterval(timer);
+        timer = setInterval(function () { go(current + 1); }, 5500);
+      }
+
+      document.getElementById('panelPrev').addEventListener('click', function () { go(current - 1); });
+      document.getElementById('panelNext').addEventListener('click', function () { go(current + 1); });
+
+      dotsContainer.querySelectorAll('.dot').forEach(function (d) {
+        d.addEventListener('click', function () { go(parseInt(d.dataset.index)); });
+      });
+
+      resetTimer();
+    })();
+
+    /* ── ABOUT SLIDESHOW ── */
+    (function () {
+      var track = document.getElementById('aboutTrack');
+      var dotsC = document.getElementById('aboutDots');
+      var tot = track.children.length;
+      var cur = 0;
+      var tmr;
+
+      for (var i = 0; i < tot; i++) {
+        var d = document.createElement('button');
+        d.className = 'about-dot' + (i === 0 ? ' active' : '');
+        d.dataset.index = i;
+        dotsC.appendChild(d);
+      }
+
+      function go(n) {
+        cur = (n + tot) % tot;
+        track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+        dotsC.querySelectorAll('.about-dot').forEach(function (d, i) {
+          d.classList.toggle('active', i === cur);
+        });
+        clearInterval(tmr);
+        tmr = setInterval(function () { go(cur + 1); }, 4000);
+      }
+
+      document.getElementById('aboutPrev').addEventListener('click', function () { go(cur - 1); });
+      document.getElementById('aboutNext').addEventListener('click', function () { go(cur + 1); });
+      dotsC.querySelectorAll('.about-dot').forEach(function (d) {
+        d.addEventListener('click', function () { go(parseInt(d.dataset.index)); });
+      });
+
+      tmr = setInterval(function () { go(cur + 1); }, 4000);
+    })();
+
+    /* ── SCROLL FADE-UP ── */
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          setTimeout(function () { entry.target.classList.add('visible'); }, 80 * (entry.target.dataset.delay || 0));
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(function (el, i) {
+      el.dataset.delay = i % 5;
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
